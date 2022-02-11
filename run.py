@@ -3,6 +3,10 @@ from random import randint
 from termcolor import colored
 
 
+ship_in_row = random.randint(0, 9)
+ship_in_col = random.randint(0, 9)
+
+
 class Game:
     """
     Main Game area, set up the board size,
@@ -15,36 +19,51 @@ class Game:
         self.number_of_ships = number_of_ships
         self.player_name = player_name
         self.game_turn = game_turn
-
+        self.player = []
+        
     def print_board(self):
+        """
+        Print the game area
+        """
         for row in self.board:
             print(" ".join(row))
 
     def player_guess(self):
-        ship_in_row = random.randint(0, 9)
-        ship_in_col = random.randint(0, 9)
-        player_number_row = int(input("Hit a number between 0 and 9:"))
-        player_number_col = int(input("Hit a number between 0 and 9:"))
-
+        """
+        Player guess the ship coordinates
+        """
         for game_turn in range(5):
-            print("Game on", game_turn+1)
-            print(colored("Don't forget to choose a number between 0 and 9"))
+            print("Game", game_turn + 1)
+            player_guess_row = int(input("number: \n"))
+            player_guess_col = int(input("number: \n"))
+            if(player_guess_row == ship_in_row and player_guess_col == ship_in_col):
+                self.player.append((player_guess_row, player_guess_col))
+                self.board[player_guess_row][player_guess_col] = "*"
+                self.print_board()
+                print("Good")
+            else:
+                self.player.append((player_guess_row, player_guess_col))
+                self.board[player_guess_row][player_guess_col] = "X"
+                self.print_board()
+                print("Wrong")
+            game_turn += 1
+            
+    def turn_guess(self, game_turn):
+        """
+        Game turn, 5 chance for each player to guess
+        """
 
-            try:
-                while(player_number_row != ship_in_row and player_number_col != ship_in_col):
-                    print(f"Try again")
-                    player_number_row = int(input("Hit a number between 0 and 9:"))
-                    player_number_col = int(input("Hit a number between 0 and 9:"))
-
-                    if (player_number_row == ship_in_row and player_number_col == ship_in_col):
-                        print("Well done, you hit it")
-                        print("Game Finished")
-            except ValueError as e:
-                print(f"Sorry {e} is not a number, you must enter a number")
-                return False
+        for game in game_turn:
+            if(game == 5):
+                print("Game over")
+            else:
+                game += 1
 
 
 def new_game():
+    """
+    new game is calling the game functions
+    """
     size = 9
     game_turn = 5
     number_of_ships = 5
