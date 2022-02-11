@@ -20,7 +20,8 @@ class Game:
         self.player_name = player_name
         self.game_turn = game_turn
         self.player = []
-        
+        self.computer = []
+               
     def print_board(self):
         """
         Print the game area
@@ -43,11 +44,30 @@ class Game:
                 print("Good")
             else:
                 self.player.append((player_guess_row, player_guess_col))
-                self.board[player_guess_row][player_guess_col] = "X"
+                self.board[player_guess_row][player_guess_col] = "P"
                 self.print_board()
                 print("Wrong")
+            self.computer_guess()
             game_turn += 1
-            
+
+    def computer_guess(self):
+        """
+        Computer guess, random numbers
+        """
+        comp_row = random.randint(0, 9)
+        comp_col = random.randint(0, 9)
+
+        if(comp_row == ship_in_row and comp_col == ship_in_col):
+            self.player.append((comp_row, comp_col))
+            self.board[comp_row][comp_col] = "@"
+            self.print_board()
+            print("Good")
+        else:
+            self.player.append((comp_row, comp_col))
+            self.board[comp_row][comp_col] = "C"
+            self.print_board()
+            print("Wrong")
+
     def turn_guess(self, game_turn):
         """
         Game turn, 5 chance for each player to guess
@@ -71,6 +91,7 @@ def new_game():
     game = Game(size, number_of_ships, player_name, game_turn)
     game.print_board()
     game.player_guess()
+    game.computer_guess()
 
 
 new_game()
