@@ -2,8 +2,8 @@ import random
 from random import randint
 from termcolor import colored
 
-ship_in_row = random.randint(0, 9)
-ship_in_col = random.randint(0, 9)
+ship_in_row = random.randint(0, 8)
+ship_in_col = random.randint(0, 8)
 
 
 class Game:
@@ -19,6 +19,7 @@ class Game:
         self.player_name = player_name
         self.game_turn = game_turn
         self.player = []
+        self.computer = []
         self.ship_in_row = random.randint(0, 9)
         self.ship_in_col = random.randint(0, 9)
 
@@ -34,40 +35,56 @@ class Game:
         Player guess the ship coordinates
         """
         for game_turn in range(7):
-            print("Game", game_turn + 1)
-            player_guess_row = int(input("number: \n"))
-            player_guess_col = int(input("number: \n"))
-
-            if(player_guess_row == ship_in_row and player_guess_col == ship_in_col):
-                self.player.append((player_guess_row, player_guess_col))
-                self.board[player_guess_row][player_guess_col] = "*"
-                self.print_board()
-                print("Good")
-            else:
-                self.player.append((player_guess_row, player_guess_col))
-                self.board[player_guess_row][player_guess_col] = "P"
-                self.print_board()
-                print("Wrong")
-            self.computer_guess()
-            game_turn += 1
+            try:
+                print("Game", game_turn + 1)
+                player_guess_row = int(input("row: \n"))
+                player_guess_col = int(input("column: \n"))
+                if(player_guess_row == ship_in_row and player_guess_col == ship_in_col):
+                    self.player.append((player_guess_row, player_guess_col))
+                    self.board[player_guess_row][player_guess_col] = "*"
+                    self.print_board()
+                    print(colored("Great, you found the ship", "yellow"))
+                    break
+                else:
+                    try:
+                        self.player.append((player_guess_row, player_guess_col))
+                        self.board[player_guess_row][player_guess_col] = "P"
+                        self.print_board()
+                        print(colored("Sorry wrong, try an other number!", "yellow"))
+                    except IndexError:
+                        print(colored("Please enter a number between 0 and 9!", "red"))
+                    self.computer_guess()
+                game_turn += 1
+            except ValueError as e:
+                print(f"Sorry {e} is not a number, you must enter a number!")
+            if game_turn == 7:
+                print(colored("Game Over", "blue"))
 
     def computer_guess(self):
         """
         Computer guess, random numbers
         """
-        comp_row = random.randint(0, 9)
-        comp_col = random.randint(0, 9)
+        def computer_number():
+            return randint(0, 9)  
 
-        if(comp_row == ship_in_row and comp_col == ship_in_col):
-            self.player.append((comp_row, comp_col))
-            self.board[comp_row][comp_col] = "@"
-            self.print_board()
-            print("Good")
-        else:
-            self.player.append((comp_row, comp_col))
-            self.board[comp_row][comp_col] = "C"
-            self.print_board()
-            print("Wrong")
+        comp_row = computer_number()
+        comp_col = computer_number()      
+        try:
+            if(comp_row == ship_in_row and comp_col == ship_in_col):
+                self.computer.append((comp_row, comp_col))
+                self.board[comp_row][comp_col] = "@"
+                self.print_board()
+                print(colored("Great, you found the ship", "green"))
+            else:
+                try:
+                    self.computer.append((comp_row, comp_col))
+                    self.board[comp_row][comp_col] = "C"
+                    self.print_board()
+                    print(colored("Sorry wrong, try an other number!", "green"))
+                except IndexError:
+                    print(colored("Please enter a number between 0 and 9!", "red"))
+        except ValueError as e:
+            print(f"Sorry {e} is not a number!")
 
     def turn_guess(self, game_turn):
         """
@@ -78,21 +95,6 @@ class Game:
                 print("Game over")
             else:
                 game += 1
-
-    def validate_guess(self, player_guess, computer_guess):
-        """
-        Validate given guesses, player give the value,
-        validator checks if is an integer, if not
-        ValueError
-        """
-        try:
-            for value in player_guess, computer_guess:
-                if 0 > value > 9:
-                    raise ValueError(
-                        "Sorry must be a number between 0 and 9!")
-        except ValueError as e:
-            print(f"Sorry {e} is not a number, you must enter a number")
-            return False
 
 
 def new_game():
