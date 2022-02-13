@@ -33,6 +33,8 @@ class Game:
     def player_guess(self):
         """
         Player guess the ship coordinates
+        Validator check if the given value is a number
+        if it is in the given range
         """
         for game_turn in range(7):
             try:
@@ -53,22 +55,24 @@ class Game:
                         print(colored("Sorry wrong, try an other number!", "yellow"))
                     except IndexError:
                         print(colored("Please enter a number between 0 and 9!", "red"))
-                    self.computer_guess()
+                self.computer_guess()
                 game_turn += 1
             except ValueError as e:
                 print(f"Sorry {e} is not a number, you must enter a number!")
-            if game_turn == 7:
-                print(colored("Game Over", "blue"))
+        if game_turn == 7:
+            print(colored("Game Over", "blue"))
 
     def computer_guess(self):
         """
         Computer guess, random numbers
+        Validator checks if the random number is a number
+        if it is in the given range
         """
         def computer_number():
             return randint(0, 9)  
 
         comp_row = computer_number()
-        comp_col = computer_number()      
+        comp_col = computer_number()   
         try:
             if(comp_row == ship_in_row and comp_col == ship_in_col):
                 self.computer.append((comp_row, comp_col))
@@ -86,20 +90,12 @@ class Game:
         except ValueError as e:
             print(f"Sorry {e} is not a number!")
 
-    def turn_guess(self, game_turn):
-        """
-        Game turn, 5 chance for each player to guess
-        """
-        for game in game_turn:
-            if game == 5:
-                print("Game over")
-            else:
-                game += 1
-
 
 def new_game():
     """
     new game is calling the game functions
+    display the game rules
+    giving colors for the player and the computer
     """
     size = 9
     game_turn = 7
@@ -117,7 +113,7 @@ def new_game():
     print(colored("*" * 35, "blue"))
     print(colored("*" * 35, "red"))
     print(colored("Game Rules: ", "yellow"))
-    print(colored("9x9 matrix", "yellow"))
+    print(colored("9x9 grid", "yellow"))
     print(colored("Player against the computer", "yellow"))
     print(colored("Each the player and the computer has 5 chance to guess the place of the ship", "yellow"))
     print(colored("validator checking if the given guesses are correct"))
