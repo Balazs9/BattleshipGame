@@ -186,6 +186,8 @@ Pep8 online validator for the python code check
 
 - line too long and trailing whitespace returned
 
+Looking for solutions from stackoverflow, but did not manage to fix it.
+
 ## Deployment
 
 - The project was developed and stored in git.
