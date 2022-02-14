@@ -72,7 +72,7 @@ class Game:
         """
         def computer_number():
             return randint(0, 9)
-            
+
         comp_row = computer_number()
         comp_col = computer_number()  
         try:

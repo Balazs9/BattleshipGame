@@ -12,6 +12,8 @@
 
 ## How to play
 
+## Model
+
 ## Technologies
 
 ## Testing
