@@ -71,10 +71,10 @@ class Game:
         if it is in the given range
         """
         def computer_number():
-            return randint(0, 9)  
-
+            return randint(0, 9)
+            
         comp_row = computer_number()
-        comp_col = computer_number()   
+        comp_col = computer_number()  
         try:
             if(comp_row == ship_in_row and comp_col == ship_in_col):
                 self.computer.append((comp_row, comp_col))
@@ -120,10 +120,11 @@ def new_game():
     print(colored("Game Rules: ", "yellow"))
     print(colored("9x9 grid", "yellow"))
     print(colored("Player against the computer", "yellow"))
-    print(colored("Each the player and the computer has 5 chance to guess the place of the ship", "yellow"))
+    print(colored("Each player and computer has 5 chance to guess the place of the ship", "yellow"))
     print(colored("validator checking if the given guesses are correct", "yellow"))
     player_name = input(colored("Please enter your name: ", "red"))
     print(colored(f"Hi {player_name}, enjoy the fight", "yellow"))
+    print(colored("*" * 35, "red"))
     game = Game(size, number_of_ships, player_name, game_turn)
     game.print_board()
     game.player_guess()

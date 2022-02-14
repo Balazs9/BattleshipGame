@@ -10,7 +10,7 @@
 
 ## Features
 
-## Issues
+## How to play
 
 ## Technologies
 
@@ -94,11 +94,7 @@ III. Structure:
 
 ![diagram](assets/battleshipdg.png)
 
-IV. Skelton:
-
-no wireframe, the game is in python terminal
-
-V. Surface
+IV. Surface
 
 colores: different colores for rules and name and players to make it more visible
 
@@ -108,15 +104,43 @@ colores: different colores for rules and name and players to make it more visibl
 
 - player can type the name
 
-- player can decide what size is desired for the game area => the difficulities will increase also, because to find the ships will be harder or easier
+- random board generator: player can decide what size is desired for the game area => the difficulities will increase also, because to find the ships will be harder or easier
 
 2. features to implement:
 
 - scoreboard 
 
-## Issues
+## How to play
 
-During the development tried different options to implement the validator, and the solution was to validate the guesses from player and computer separate.
+- the player can choose a number which will set up the grid size
+
+- enter the player name
+
+- the game starts: 
+
+the player takes the first guess and than the computer. Each player has 7 chence to find the 5 ships in the field. After 7 turn the game will finish.
+
+1. player signs: 
+
+- when a hit is "*"
+
+- when miss "P"
+
+2. computer signs:
+
+- when a hit is "*"
+
+- when miss "C"
+
+- after guessing the number either a warning message or a message about found the ship, which has different colors for player and computer. Player color is yellow, computer is green.
+
+## Model
+
+- the game board is in a class. The game creates 1 board which contains the player guesses and the computer guesses. 
+
+- the game class stores the number of ships, the size, the game turns and the player name.
+
+- the methods what is in the game class: player_guess and computer_guess and print_board.
 
 ## Technologies
 
@@ -132,6 +156,8 @@ During the development tried different options to implement the validator, and t
 The game was tested with all scenarios, given number outside of the range, given other characters also, validator is working correctly checking and giving the suitable warning message
 
 Pep8 online validator for the python code check
+
+- line too long and trailing whitespace returned
 
 ## Deployment
 
