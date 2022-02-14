@@ -20,8 +20,8 @@ class Game:
         self.game_turn = game_turn
         self.player = []
         self.computer = []
-        self.ship_in_row = random.randint(0, 9)
-        self.ship_in_col = random.randint(0, 9)
+        self.ship_in_row = random.randint(0, self.size)
+        self.ship_in_col = random.randint(0, self.size)
 
     def print_board(self):
         """
@@ -51,10 +51,12 @@ class Game:
                     try:
                         self.player.append((player_guess_row, player_guess_col))
                         self.board[player_guess_row][player_guess_col] = "P"
+                        print(colored("------------------", "red"))
                         self.print_board()
+                        print(colored("------------------", "red"))
                         print(colored("Sorry wrong, try an other number!", "yellow"))
                     except IndexError:
-                        print(colored("Please enter a number between 0 and 9!", "red"))
+                        print(colored(f"Please enter a number between 0 and {self.size}!", "red"))
                 self.computer_guess()
                 game_turn += 1
             except ValueError as e:
@@ -83,10 +85,12 @@ class Game:
                 try:
                     self.computer.append((comp_row, comp_col))
                     self.board[comp_row][comp_col] = "C"
+                    print(colored("------------------", "red"))
                     self.print_board()
+                    print(colored("------------------", "red"))
                     print(colored("Sorry wrong, try an other number!", "green"))
                 except IndexError:
-                    print(colored("Please enter a number between 0 and 9!", "red"))
+                    print(colored(f"Please enter a number between 0 and {self.size}!", "red"))
         except ValueError as e:
             print(f"Sorry {e} is not a number!")
 
@@ -94,10 +98,11 @@ class Game:
 def new_game():
     """
     new game is calling the game functions
+    player able to customize the grid size
     display the game rules
     giving colors for the player and the computer
     """
-    size = 9
+    size = int(input("please enter a number: \n"))
     game_turn = 7
     number_of_ships = 5
     print(colored("      * ", "yellow"))
@@ -116,7 +121,7 @@ def new_game():
     print(colored("9x9 grid", "yellow"))
     print(colored("Player against the computer", "yellow"))
     print(colored("Each the player and the computer has 5 chance to guess the place of the ship", "yellow"))
-    print(colored("validator checking if the given guesses are correct"))
+    print(colored("validator checking if the given guesses are correct", "yellow"))
     player_name = input(colored("Please enter your name: ", "red"))
     print(colored(f"Hi {player_name}, enjoy the fight", "yellow"))
     game = Game(size, number_of_ships, player_name, game_turn)
