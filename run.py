@@ -118,7 +118,6 @@ def new_game():
     print(colored("*" * 35, "blue"))
     print(colored("*" * 35, "red"))
     print(colored("Game Rules: ", "yellow"))
-    print(colored("9x9 grid", "yellow"))
     print(colored("Player against the computer", "yellow"))
     print(colored("Each player and computer has 5 chance to guess the place of the ship", "yellow"))
     print(colored("validator checking if the given guesses are correct", "yellow"))

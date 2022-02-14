@@ -1,5 +1,9 @@
 # BattleShip Game
 
+![game](assets/game.png)
+
+[liveproject](https://battleship-the-game.herokuapp.com/)
+
 ## UX
 
 - User Goals
@@ -104,9 +108,30 @@ colores: different colores for rules and name and players to make it more visibl
 
 1. existing features:
 
+- starting page 
+
+![start](assets/startingpage.png)
+
 - player can type the name
 
+![playername](assets/addedplayername.png)
+
 - random board generator: player can decide what size is desired for the game area => the difficulities will increase also, because to find the ships will be harder or easier
+
+![boardsize](assets/setupboardsize.png)
+
+- guess number
+
+![guess](assets/guessingnumber.png)
+
+- validator for number out of range
+
+![wrongnumber](assets/numbernotinrange.png)
+
+- validator for not a number
+
+![notnumber](assets/wrongcharacter.png)
+
 
 2. features to implement:
 
