@@ -182,6 +182,13 @@ the player takes the first guess and than the computer. Each player has 7 chence
 
 The game was tested with all scenarios, given number outside of the range, given other characters also, validator is working correctly checking and giving the suitable warning message
 
+Given no entry number error:
+
+- if player gives no number at entry question where the game requiers a number to set the grid size, the game will crash
+
+![given nod number](assets/nonumber.png)
+
+
 Pep8 online validator for the python code check
 
 - line too long and trailing whitespace returned
