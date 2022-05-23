@@ -94,6 +94,17 @@ class Game:
         except ValueError as e:
             print(f"Sorry {e} is not a number!")
 
+    def gridsize(self):
+        size = int(input("please enter a number: \n"))
+
+        try:
+            if (size >= 5):
+                print(colored(f"Welcome in the Battleship game {self.player_name}"))
+            else:
+                print(colored("Sorry, but you must give a nmuber >= 5, please try again!"))
+        except ValueError as e:
+            print(f"Sorry {e} was empty, you must add a number >= 5")
+
 
 def new_game():
     """
@@ -102,9 +113,6 @@ def new_game():
     display the game rules
     giving colors for the player and the computer
     """
-    size = int(input("please enter a number: \n"))
-    game_turn = 7
-    number_of_ships = 5
     print(colored("      * ", "yellow"))
     print(colored("      ***** ", "yellow"))
     print(colored("      *   *  ", "yellow"))
@@ -122,6 +130,20 @@ def new_game():
     print(colored("Each player and computer has 5 chance to guess the place of the ship", "yellow"))
     print(colored("validator checking if the given guesses are correct", "yellow"))
     player_name = input(colored("Please enter your name: ", "red"))
+    # size = int(input("please enter a number: \n"))
+    size = None
+    while size is None:
+        board_size = input("please enter a number: \n")
+        try:
+            size = int(board_size)
+        except ValueError:
+            print(f"Sorry {player_name} invalid data, you must enter a number >= 5 ")
+    if (size >= 4):
+        print(colored(f"Welcome in the Battleship game {player_name}"))
+    else:
+        print(colored("Sorry, but you must give a nmuber >= 5, please try again!"))
+    game_turn = 7
+    number_of_ships = 5
     print(colored(f"Hi {player_name}, enjoy the fight", "yellow"))
     print(colored("*" * 35, "red"))
     game = Game(size, number_of_ships, player_name, game_turn)
