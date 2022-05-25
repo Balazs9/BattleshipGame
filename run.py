@@ -45,7 +45,7 @@ class Game:
                     self.player.append((player_guess_row, player_guess_col))
                     self.board[player_guess_row][player_guess_col] = "*"
                     self.print_board()
-                    print(colored("Great, you found the ship", "yellow"))
+                    print(colored(f"Great job {self.player_name}, you found the ship", "yellow"))
                     break
                 else:
                     try:
@@ -94,17 +94,6 @@ class Game:
         except ValueError as e:
             print(f"Sorry {e} is not a number!")
 
-    def gridsize(self):
-        size = int(input("please enter a number: \n"))
-
-        try:
-            if (size >= 5):
-                print(colored(f"Welcome in the Battleship game {self.player_name}"))
-            else:
-                print(colored("Sorry, but you must give a nmuber >= 5, please try again!"))
-        except ValueError as e:
-            print(f"Sorry {e} was empty, you must add a number >= 5")
-
 
 def new_game():
     """
@@ -127,23 +116,22 @@ def new_game():
     print(colored("*" * 35, "red"))
     print(colored("Game Rules: ", "yellow"))
     print(colored("Player against the computer", "yellow"))
-    print(colored("Each player and computer has 5 chance to guess the place of the ship", "yellow"))
+    print(colored("Each the player and the computer has 7 chance to guess the place of the ship", "yellow"))
+    print(colored("The first index on the board is 0", "yellow"))
     print(colored("validator checking if the given guesses are correct", "yellow"))
+    print(colored("To set the size of the board, please enter a number", "yellow"))
+    print(colored("Please enter your name and give the number for the board size", "yellow"))
+    # player giving their name
     player_name = input(colored("Please enter your name: ", "red"))
-    # size = int(input("please enter a number: \n"))
-    size = None
-    while size is None:
-        board_size = input("please enter a number: \n")
-        try:
-            size = int(board_size)
-        except ValueError:
-            print(f"Sorry {player_name} invalid data, you must enter a number >= 5 ")
-    if (size >= 4):
-        print(colored(f"Welcome in the Battleship game {player_name}"))
-    else:
-        print(colored("Sorry, but you must give a nmuber >= 5, please try again!"))
+    # while loop with isaplha() method, to check the given name is valid
+    while not player_name.isalpha():
+        # if player type nothing or a number it will be invalid
+        print("Sorry invalid name, please try again!")
+        player_name = input(colored("Please enter your name: ", "red"))
+
+    size = 9
+    number_of_ships = size/2
     game_turn = 7
-    number_of_ships = 5
     print(colored(f"Hi {player_name}, enjoy the fight", "yellow"))
     print(colored("*" * 35, "red"))
     game = Game(size, number_of_ships, player_name, game_turn)
