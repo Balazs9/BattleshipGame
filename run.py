@@ -2,9 +2,6 @@ import random
 from random import randint
 from termcolor import colored
 
-ship_in_row = random.randint(0, 8)
-ship_in_col = random.randint(0, 8)
-
 
 class Game:
     """
@@ -22,6 +19,8 @@ class Game:
         self.computer = []
         self.ship_in_row = random.randint(0, self.size)
         self.ship_in_col = random.randint(0, self.size)
+        print(self.ship_in_row)
+        print(self.ship_in_col)
 
     def print_board(self):
         """
@@ -41,7 +40,7 @@ class Game:
                 print("Game", game_turn + 1)
                 player_guess_row = int(input("row: \n"))
                 player_guess_col = int(input("column: \n"))
-                if(player_guess_row == ship_in_row and player_guess_col == ship_in_col):
+                if(player_guess_row == self.ship_in_row and player_guess_col == self.ship_in_col):
                     self.player.append((player_guess_row, player_guess_col))
                     self.board[player_guess_row][player_guess_col] = "*"
                     self.print_board()
@@ -71,12 +70,12 @@ class Game:
         if it is in the given range
         """
         def computer_number():
-            return randint(0, 9)
+            return randint(0, self.size)
 
         comp_row = computer_number()
         comp_col = computer_number()  
         try:
-            if(comp_row == ship_in_row and comp_col == ship_in_col):
+            if(comp_row == self.ship_in_row and comp_col == self.ship_in_col):
                 self.computer.append((comp_row, comp_col))
                 self.board[comp_row][comp_col] = "@"
                 self.print_board()
@@ -117,7 +116,8 @@ def new_game():
     print(colored("Game Rules: ", "yellow"))
     print(colored("Player against the computer", "yellow"))
     print(colored("Each the player and the computer has 7 chance to guess the place of the ship", "yellow"))
-    print(colored("The first index on the board is 0", "yellow"))
+    print(colored("The range for the numbers to chhose is between 0 and 8", "yellow"))
+    print(colored("The player neer to pick a number for the row and a number for the column too", "yellow"))
     print(colored("validator checking if the given guesses are correct", "yellow"))
     print(colored("To set the size of the board, please enter a number", "yellow"))
     print(colored("Please enter your name and give the number for the board size", "yellow"))
@@ -129,7 +129,7 @@ def new_game():
         print("Sorry invalid name, please try again!")
         player_name = input(colored("Please enter your name: ", "red"))
 
-    size = 9
+    size = 20
     number_of_ships = size/2
     game_turn = 7
     print(colored(f"Hi {player_name}, enjoy the fight", "yellow"))
