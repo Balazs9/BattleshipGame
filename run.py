@@ -19,8 +19,6 @@ class Game:
         self.computer = []
         self.ship_in_row = random.randint(0, self.size)
         self.ship_in_col = random.randint(0, self.size)
-        print(self.ship_in_row)
-        print(self.ship_in_col)
 
     def print_board(self):
         """
@@ -121,18 +119,31 @@ def new_game():
     print(colored("validator checking if the given guesses are correct", "yellow"))
     print(colored("To set the size of the board, please enter a number", "yellow"))
     print(colored("Please enter your name and give the number for the board size", "yellow"))
-    # player giving their name
+
+# player giving their name
     player_name = input(colored("Please enter your name: ", "red"))
-    # while loop with isaplha() method, to check the given name is valid
+# while loop with isaplha() method, to check the given name is valid
     while not player_name.isalpha():
         # if player type nothing or a number it will be invalid
-        print("Sorry invalid name, please try again!")
+        print(colored("Sorry invalid name, please try again!", "red"))
         player_name = input(colored("Please enter your name: ", "red"))
 
-    size = 20
-    number_of_ships = size/2
-    game_turn = 7
+    # player set the size of the board
+    size = input("Please add a number what is bigger than 9, but smaller than 20: \n")
+# if statement checks if the input is a integer
+    if size != int:
+        print(colored("Sorry invalid input, please try again!", "red"))
+        size = int(input("Please add a number what is bigger than 9, but smaller than 20: \n"))
+# if the given data is in the given range
+        if size < 9 or size > 20:
+            print(colored("Sorry invalid number, please try again!", "red"))
+            size = int(input("Please add a number what is bigger than 9, but smaller than 20: \n"))
     print(colored(f"Hi {player_name}, enjoy the fight", "yellow"))
+
+    # size = int(input("Please add a number what is bigger than 9, but smaller than 20"))
+    number_of_ships = 5
+    game_turn = 7
+    # print(colored(f"Hi {player_name}, enjoy the fight", "yellow"))
     print(colored("*" * 35, "red"))
     game = Game(size, number_of_ships, player_name, game_turn)
     game.print_board()
