@@ -110,15 +110,15 @@ colores: different colores for rules and name and players to make it more visibl
 
 - starting page 
 
-![start](assets/startingpage.png)
+![start](assets/opening.png)
 
 - player can type the name
 
-![playername](assets/addedplayername.png)
+![playername](assets/openingwithname.png)
 
 - random board generator: player can decide what size is desired for the game area => the difficulities will increase also, because to find the ships will be harder or easier
 
-![boardsize](assets/setupboardsize.png)
+![boardsize](assets/setgridsize.png)
 
 - guess number
 
