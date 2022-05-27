@@ -128,16 +128,26 @@ def new_game():
         print(colored("Sorry invalid name, please try again!", "red"))
         player_name = input(colored("Please enter your name: ", "red"))
 
-    # player set the size of the board
+# player set the size of the board
     size = input("Please add a number what is bigger than 9, but smaller than 20: \n")
-# if statement checks if the input is a integer
-    if size != int:
-        print(colored("Sorry invalid input, please try again!", "red"))
-        size = int(input("Please add a number what is bigger than 9, but smaller than 20: \n"))
+# if statement checks if the input is an integer
+    try:
 # if the given data is in the given range
-        if size < 9 or size > 20:
-            print(colored("Sorry invalid number, please try again!", "red"))
+        if size != int:
+            print(colored("Sorry invalid input, please try again!", "red"))
             size = int(input("Please add a number what is bigger than 9, but smaller than 20: \n"))
+            try:
+                while (size < 9 or size > 20):
+                    # print(colored("Sorry invalid number, please try again!", "red"))
+                    # size = int(input("Please add a number what is bigger than 9, but smaller than 20: \n"))
+                    raise IndexError()
+            except IndexError:
+                print(colored("Sorry invalid number, please try again!", "red"))
+                size = int(input("Please add a number what is bigger than 9, but smaller than 20: \n"))
+
+    except ValueError as e:
+        print(colored(f"Sorry {e} is not number, please try again!", "red"))
+        # size = int(input("Please add a number what is bigger than 9, but smaller than 20: \n"))
     print(colored(f"Hi {player_name}, enjoy the fight", "yellow"))
 
     # size = int(input("Please add a number what is bigger than 9, but smaller than 20"))
