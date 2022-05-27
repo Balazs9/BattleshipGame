@@ -192,23 +192,23 @@ The previous error fixed:
 
 - if player give no input at the entry where name is required:
 
-![no input at start]
+![no input at start](assets/nonameinput.png)
 
 - if player give no input when size set required
 
-![no size input]
+![no size input](assets/nosizeinput.png)
 
 - if player give the number to set grid size, but the number is out of the given range
 
-![number out of range]
+![number out of range](assets/outofrangeinput.png)
 
 - in game error, when player give no input
 
-![no input ingame]
+![no input ingame](assets/ingamenoinput.png)
 
 - in game when player input is not an int
 
-![input is not an int]
+![input is not an int](assets/ingamenotint.png)
 
 
 
