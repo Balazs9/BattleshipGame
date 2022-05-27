@@ -186,7 +186,30 @@ Given no entry number error:
 
 - if player gives no number at entry question where the game requiers a number to set the grid size, the game will crash
 
-![given nod number](assets/nonumber.png)
+![given no number](assets/nonumber.png)
+
+The previous error fixed:
+
+- if player give no input at the entry where name is required:
+
+![no input at start]
+
+- if player give no input when size set required
+
+![no size input]
+
+- if player give the number to set grid size, but the number is out of the given range
+
+![number out of range]
+
+- in game error, when player give no input
+
+![no input ingame]
+
+- in game when player input is not an int
+
+![input is not an int]
+
 
 
 Pep8 online validator for the python code check
