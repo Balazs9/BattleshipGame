@@ -130,30 +130,23 @@ def new_game():
 
 # player set the size of the board
     size = input("Please add a number what is bigger than 9, but smaller than 20: \n")
-# if statement checks if the input is an integer
-    try:
-# if the given data is in the given range
-        if size != int:
-            print(colored("Sorry invalid input, please try again!", "red"))
-            size = int(input("Please add a number what is bigger than 9, but smaller than 20: \n"))
-            try:
-                while (size < 9 or size > 20):
-                    # print(colored("Sorry invalid number, please try again!", "red"))
-                    # size = int(input("Please add a number what is bigger than 9, but smaller than 20: \n"))
-                    raise IndexError()
-            except IndexError:
-                print(colored("Sorry invalid number, please try again!", "red"))
-                size = int(input("Please add a number what is bigger than 9, but smaller than 20: \n"))
 
-    except ValueError as e:
-        print(colored(f"Sorry {e} is not number, please try again!", "red"))
-        # size = int(input("Please add a number what is bigger than 9, but smaller than 20: \n"))
+# used assert keyword for debugging, it will raise an error everytime when user gives a number outside the range
+    while True:
+        try:
+            size = int(input("Please add a number what is bigger than 9, but smaller than 20: \n"))
+            assert 9 < size < 20
+        except ValueError as e:
+            print(colored(f"Sorry {e} is not number, please try again!", "red"))
+            # size = int(input("Please add a number what is bigger than 9, but smaller than 20: \n"))
+        except AssertionError:
+            print(colored("Sorry but you need to choose a number between 9 and 20, please try again", "red"))
+        else:
+            break
     print(colored(f"Hi {player_name}, enjoy the fight", "yellow"))
 
-    # size = int(input("Please add a number what is bigger than 9, but smaller than 20"))
     number_of_ships = 5
     game_turn = 7
-    # print(colored(f"Hi {player_name}, enjoy the fight", "yellow"))
     print(colored("*" * 35, "red"))
     game = Game(size, number_of_ships, player_name, game_turn)
     game.print_board()
