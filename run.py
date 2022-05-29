@@ -138,7 +138,6 @@ def new_game():
             assert 9 < size < 20
         except ValueError as e:
             print(colored(f"Sorry {e} is not number, please try again!", "red"))
-            # size = int(input("Please add a number what is bigger than 9, but smaller than 20: \n"))
         except AssertionError:
             print(colored("Sorry but you need to choose a number between 9 and 20, please try again", "red"))
         else:
