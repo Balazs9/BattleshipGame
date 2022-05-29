@@ -180,7 +180,14 @@ the player takes the first guess and than the computer. Each player has 7 chence
 
 ## Testing
 
-The game was tested with all scenarios, given number outside of the range, given other characters also, validator is working correctly checking and giving the suitable warning message
+The game was tested with all scenarios, given number outside of the range, given other characters also, validator is working correctly checking and giving the suitable warning message.
+
+Below all errors occured during development, all been fixed. For the entry of the game when the user required to give a number to set the size of the board: 
+
+- first changes: given a range for the user to select, between 9 and 20
+
+- second chenges: use the assert keyword  
+[W3Schools] (https://www.w3schools.com/python/ref_keyword_assert.asp) , this keyword test the given numbers, if they are out of range it will raise assertationerror
 
 Given no entry number error:
 
@@ -202,6 +209,18 @@ The previous error fixed:
 
 ![number out of range](assets/outofrangeinput.png)
 
+- if player try to gives a number out of range 2 times
+
+![invalid numer](assets/invalidnumber.png)
+
+- if player give no input more times
+
+![no input](assets/error.png)
+
+- fixed for all scenario
+
+![all errors tested](assets/allscenariotested.png)
+
 - in game error, when player give no input
 
 ![no input ingame](assets/ingamenoinput.png)
@@ -209,7 +228,6 @@ The previous error fixed:
 - in game when player input is not an int
 
 ![input is not an int](assets/ingamenotint.png)
-
 
 
 Pep8 online validator for the python code check
